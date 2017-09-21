@@ -79,7 +79,7 @@ public void onAuthentication(Credentials credentials) {
 
 Now, you can link the accounts. To do this, you need the logged-in user's ID and the ID tokens for the two accounts: 
 * The saved account the user initially logged in to
-* The second account received in the login response
+* The second account received in the last login response
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/LoginActivity.java
