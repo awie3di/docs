@@ -39,7 +39,7 @@ Your users may want to link their other accounts to the account they are logged 
 Use the [Auth0 Android](https://github.com/auth0/Auth0.Android) library.
 :::
 
-To allow your users to link their accounts, in your requests, you need to send an additional boolean value. The boolean value tells the application that it is a secondary login, with the `userID` value obtained after the first login.
+To allow your users to link their accounts, in your requests, you need to send an additional boolean value. The boolean value tells the application that it is a secondary login, in addition to the `userID` value obtained after the first login.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
