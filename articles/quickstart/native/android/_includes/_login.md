@@ -13,7 +13,7 @@ You can use a constructor that receives an Android Context if you have added the
 * `R.string.com_auth0_client_id`
 * `R.string.com_auth0_domain`
 
-If you prefer to hardcode the resources, use the constructor that receives both strings. Then, use the `WebAuthProvider` class to authenticate with any connection you enabled on your client in the  [Auth0 dashboard](${manage_url}/#/).
+If you prefer to hardcode the resources, use the constructor that receives both strings. Then, use the `WebAuthProvider` class to authenticate with any connection you enabled on your client in the [Auth0 dashboard](${manage_url}/#/).
 
 You need to make sure you get a response compliant with the OpenID Connect protocol. You can choose between two options:
 
