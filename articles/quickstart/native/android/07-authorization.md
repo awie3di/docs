@@ -30,7 +30,7 @@ Create a rule that assigns the following access roles to your user:
 * An admin role
 * A regular user role
 
-To assign roles, go to the [New rule](${manage_url}/#/rules/new) page. In the **Access Control** section,  select the **Set roles to a user** template. 
+To assign roles, go to the [New rule](${manage_url}/#/rules/new) page. In the **Access Control** section, select the **Set roles to a user** template. 
 
 Edit the following line from the default script to match the conditions that fit your needs:
 
