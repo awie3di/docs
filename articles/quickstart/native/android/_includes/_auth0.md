@@ -22,7 +22,7 @@ dependencies {
 You can check for the latest version on the repository [Readme](https://github.com/auth0/auth0.android#installation), in [Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22auth0%22%20g%3A%22com.auth0.android%22), or in [JCenter](https://bintray.com/auth0/android/auth0).
 :::
 
-Add Manifest Placeholders, required by the SDK. They internally define an `intent-filter` to capture the authentication callback URL. 
+Add manifest placeholders required by the SDK. The placeholders are used internally to define an `intent-filter` to capture the authentication callback URL. 
 
 You do that by adding the next line:
 
@@ -44,8 +44,8 @@ android {
 }
 ```
 
-Run **Sync Project with Gradle Files** inside Android Studio or `./gradlew clean assembleDebug` from the command line.
+Run **Sync Project with Gradle Files** inside Android Studio or execute `./gradlew clean assembleDebug` from the command line.
 
 ::: note
-For more information about using Gradle, check [their official documentation](https://gradle.org/getting-started-android-build/).
+For more information about using Gradle, check the [Gradle official documentation](https://gradle.org/getting-started-android-build/).
 :::

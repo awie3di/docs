@@ -18,17 +18,17 @@ This tutorial will show you how to login and maintain an active session with Aut
   ]
 }) %>__
 
-For this, you will need to handle the user's `Credentials`. Let's take a look at this class, which is composed of five objects:
+You need the `Credentials` class to handle the user's credentials. The class is composed of seven objects:
 
-* `accessToken`: Access Token used by the Auth0 API.
-* `idToken`: Identity Token that proves the identity of the user.
-* `refreshToken`: Refresh Token that can be used to request new tokens without signing in again.
-* `tokenType`: The type of the tokens issued by the server.
-* `expiresIn`: The amount in seconds in which the tokens will be deemed invalid.
-* `expiresAt`: The Date in which the tokens will be deemed invalid.
-* `scope`: The granted scope, if different from the requested one.
+* `accessToken`: Access token used by the Auth0 API. To learn more, see the [access token documentation](/tokens/access-token).
+* `idToken`: Identity token that proves the identity of the user. To learn more, see the [ID token documentation](/tokens/id-token).
+* `refreshToken`: Refresh token that can be used to request new tokens without signing in again. To learn more, see the [refresh token documentation](/tokens/refresh-token/current).
+* `tokenType`: The type of tokens issued by the server.
+* `expiresIn`: The amount of seconds before the tokens expire.
+* `expiresAt`: The date when the tokens expire.
+* `scope`: The scope that was granted to a user. This information is shown only if the granted scope is different than the requested one.
 
-The Tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them [here](https://auth0.com/docs/tokens).
+The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them [here](https://auth0.com/docs/tokens).
 
 
 ## Before Starting
@@ -76,7 +76,7 @@ private final AuthCallback callback = new AuthCallback() {
 ```
 
 ::: note
-In the seed project, the `SharedPreferences` is used in [Private mode](https://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE) to store the user credentials. This is done by a the class `CredentialsManager`, you can check the implementation in the project code. There are better and more secure ways to store tokens, but we won't cover them in this tutorial.
+User credentials are stored in [Private mode](https://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE) in the seed project in the `SharedPreferences` file. You can achieve this with the `CredentialsManager`class. For details, check the implementation in the project code. There are better and more secure ways to store tokens, but we will not cover them in this tutorial.
 :::
 
 ## At Startup: Check Token Existence
@@ -98,8 +98,9 @@ if (accessToken == null) {
 
 ## Validate an Existing Token
 
-If the `access_token` exists, we need to check whether it’s still valid. To do so we can:
-* Check that the elapsed time since the token was obtained is lesser than the `expires_in` value received in with the credentials. For this to work we'll have to save the current time whenever we receive and store a new pair of credentials.
+If the access token exists, check if it is valid. 
+You can choose between two options: 
+* Save the `expires_in` value and the time when the user received a new pair of credentials. When you need to use the token, check if the time since the user got the access token exceeds the time defined in the `expires_in` value. The token is no longer valid when the `expires_in` value is exceeded. 
 * Call the Auth0 Authentication API and check the response.
 
 We will explain the latter approach by calling the `/userinfo` endpoint.
@@ -133,6 +134,13 @@ If you want users to re-enter their credentials, you should clear the stored dat
 
 We will use the previously saved `refresh_token` to get a new `access_token`. It is recommended that you read and understand the [refresh tokens documentation](/refresh-token) before proceeding. For example, you should remember that even though the refresh token cannot expire and must be securely saved, it can be revoked. Also note that the new pair of credentials will never have additional scope than the requested in the first login.
 
+::: panel
+Before you go further with this tutorial, read the [refresh token documentation](/refresh-token).
+It is important that you remember the following:
+* You must save the refresh token securely
+* Even though the refresh token cannot expire and must be securely saved, it can be revoked. 
+* The new pair of credentials will never have a different scope than the scope you requested during the first login.
+:::
 
 First instantiate an `AuthenticationAPIClient`:
 
@@ -186,6 +194,8 @@ private void logout() {
 Deleting the user credentials depends on how you have stored them.
 :::
 
-### Optional: Encapsulated session handling
+### Optional: Encapsulate Session Handling
 
-As you have probably realized by now, session handling is not a straightforward process. All the token-related information and processes can be encapsulated into a class that separates its logic from the activity. We recommend that you download the sample project from this tutorial and take a look at its implementation, focusing on the `CredentialsManager` class, which is in charge of dealing with this process as well as saving and obtaining the credentials object from the `SharedPreferences`.
+Handling users' sessions is not a straightforward process. You can simplify it by storing token-related information and processes in a class. The class needs to separate the logic for handling users' sessions from the activity. 
+
+We recommend that you download the sample project from this tutorial and take a look at its implementation. Focus on the `CredentialsManager` class, which manages session handling, obtains user credentials from the `SharedPreferences` file and saves them.
