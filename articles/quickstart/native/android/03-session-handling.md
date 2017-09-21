@@ -18,7 +18,7 @@ This tutorial shows you how to let users log in and maintain an active session w
   ]
 }) %>__
 
-You need the `Credentials` class to handle users' credentials. The class is composed of seven objects:
+You need the `Credentials` class to handle the user's credentials. The class is composed of seven objects:
 
 * `accessToken`: Access token used by the Auth0 API. To learn more, see the [access token documentation](/tokens/access-token).
 * `idToken`: Identity token that proves the identity of the user. To learn more, see the [ID token documentation](/tokens/id-token).
@@ -26,7 +26,7 @@ You need the `Credentials` class to handle users' credentials. The class is comp
 * `tokenType`: The type of tokens issued by the server.
 * `expiresIn`: The amount of seconds before the tokens expire.
 * `expiresAt`: The date when the tokens expire.
-* `scope`: The scope that was granted to a user. This information is shown only if the granted token is different than the requested one.
+* `scope`: The scope that was granted to a user. This information is shown only if the granted scope is different than the requested one.
 
 The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them in the [tokens documentation](https://auth0.com/docs/tokens).
 
