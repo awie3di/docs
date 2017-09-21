@@ -26,7 +26,7 @@ Before you continue with this tutorial, make sure that you have completed the pr
 * You have set up a backend application as API. To learn how to do it, follow one of the [backend tutorials](https://auth0.com/docs/quickstart/backend). 
 :::
 
-After you set up an API, obtain the endpoint where your users authenticate. Declare the endpoint as constant in the current class:
+After you set up an API, obtain the endpoint where your users authenticate. Declare the endpoint as a constant in the current class:
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
