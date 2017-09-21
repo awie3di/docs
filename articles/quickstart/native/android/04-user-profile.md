@@ -134,7 +134,7 @@ String country = (String) profile.getUserMetadata().get("country");
 ```
 
 ::: note
-You can choose the strings for subscripting the `user_metadata` map and the variable types you handle.
+You can choose the names and value types of the keys you use for subscripting the `user_metadata` map.
 :::
 
 #### B. App metadata
