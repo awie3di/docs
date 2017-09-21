@@ -58,7 +58,7 @@ boolean linkSessions = getIntent().getExtras().getBoolean(Constants.LINK_ACCOUNT
 String userId = getIntent().getExtras().getString(Constants.PRIMARY_USER_ID);
 ```
 
-In the login response, decide whether you want to move to  `MainActivity` as usual, or return to the already instantiated one:
+In the login response, check the `linkSessions` boolean value. Depending on the value, decide whether to show `MainActivity` as usual, or continue to link the accounts:
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/LoginActivity.java
