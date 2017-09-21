@@ -143,7 +143,7 @@ The `appMetadata` map contains fields that are usually added with a [Rule](/rule
 
 #### C. Extra information
 
-The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to the `UserProfile` getter method. For native platforms, this information is read-only.
+The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to any getter method in the `UserProfile` class. For native platforms, this information is read-only.
 
 ::: note
 To learn more about metadata, see the [metadata documentation](/metadata).
