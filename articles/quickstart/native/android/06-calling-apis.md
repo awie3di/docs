@@ -22,7 +22,7 @@ This tutorial shows you how to use a previously saved token to authenticate your
 
 ::: panel Complete the previous tutorials
 Before you continue with this tutorial, make sure that you have completed the previous tutorials. This tutorial assumes that:
-* You have completered the [Session Handling](/quickstart/native/android/03-session-handling tutorial and you know how to handle the `Credentials` object.
+* You have completed the [Session Handling](/quickstart/native/android/03-session-handling tutorial and you know how to handle the `Credentials` object.
 * You have set up a backend application as API. To learn how to do it, follow one of the [backend tutorials](https://auth0.com/docs/quickstart/backend). 
 :::
 
