@@ -46,7 +46,7 @@ Attach the user's access token to the request you send to the API.
 In this example, we use the [OkHttp](https://github.com/square/okhttp) library.
 :::
 
-Create an instance of the `OkHttpClient` client and a new `Request`. Use the provided builder to customize the Http method, the URL and the headers in the request. Set the **Authorization** header with the token type and the user's access token.
+Create an instance of the `OkHttpClient` client and a new `Request`. Use the provided builder to customize the `Http` method, the URL and the headers in the request. Set the **Authorization** header with the token type and the user's access token.
 
 ::: note
 Depending on the standards in your API, you configure the authorization header differently. The code below is just an example. 
