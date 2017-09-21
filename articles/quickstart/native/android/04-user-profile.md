@@ -24,7 +24,7 @@ This tutorial shows you how to get and modify the user's profile data with Auth0
 Before you continue with this tutorial, make sure that you have completed the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) tutorial. To call the API clients, you need a valid access token and ID token.
 :::
 
-Before launching the login process, you need to make sure you get a valid profile in the response. To do that, ask for the `openid profile email` scope. Find the snippet in which you initialize the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
+Before you launch the login process, make sure you will get a valid profile from the authorization server. To do that, ask for the `openid profile email` scope. Find the snippet in which you initialize the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
 
 ```java
 Auth0 auth0 = new Auth0(this);
