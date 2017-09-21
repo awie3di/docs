@@ -143,6 +143,7 @@ This tutorial shows how to use a refresh token. If you want users to re-enter th
 ::: panel
 Before you go further with this tutorial, read the [refresh token documentation](/refresh-token).
 It is important that you remember the following:
+* You must save the refresh token securely
 * Even though the refresh token cannot expire and must be securely saved, it can be revoked. 
 * The new pair of credentials will never have a different scope than the scope you requested during the first login.
 :::
