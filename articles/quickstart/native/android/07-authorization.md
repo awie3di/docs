@@ -73,7 +73,7 @@ if (roles.contains("admin")) {
 ```
 
 ::: note
-Application metadata cannot be modified by users but the user metadata can be modified. Because of that, the information about user roles is in the `appMetadata` HashMap, not in the `userMetadata` HashMap.
+Application metadata cannot be modified by users but the user metadata can be modified. Because of that, the information about user roles is stored in the `appMetadata` HashMap, not in the `userMetadata` HashMap.
 :::
 
 ## Restrict Content Based on Access Level
