@@ -102,9 +102,9 @@ if (accessToken == null) {
 
 ## Validate the Existing Token
 
-If the access token exists, the next step is to check if it is valid. 
+If the access token exists, check if it is valid. 
 You can choose between two options: 
-* Ssave the time when the user receives a new pair of credentials. Then, check if the time since the user got the access token exceeds the time defined in the `expires_in` value.
+* Save the `expires_in` value and the time when the user received a new pair of credentials. When you need to use the token, check if the time since the user got the access token exceeds the time defined in the `expires_in` value. The token is no longer valid when the `expires_in` value is exceeded. 
 * Call the Auth0 Authentication API and check the response.
 
 ::: note 
