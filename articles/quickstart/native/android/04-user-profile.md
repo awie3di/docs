@@ -99,7 +99,7 @@ usersClient.getProfile(userId)
         });
 ```
 
-## Access the Data Inside the `UserProfile` Profile
+## Access the Data Inside the Received Profile
 
 ### Default information
 
