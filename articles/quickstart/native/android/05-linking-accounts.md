@@ -133,7 +133,7 @@ To unlink the accounts, you need to specify the following:
 * user ID for the linked acocunt
 * the provider name
 
-To instantiate the `UsersAPIClient` client, use the ID token for the  main account.
+To instantiate the `UsersAPIClient` client, use the ID token for the main account.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
