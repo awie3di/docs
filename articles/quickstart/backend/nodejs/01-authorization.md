@@ -42,7 +42,7 @@ npm install --save express-jwt jwks-rsa express-jwt-authz
 
 <%= include('../_includes/_api_jwks_description', { sampleLink: 'https://github.com/auth0-samples/auth0-express-api-samples/tree/master/02-Authorization-HS256' }) %>
 
-Configure the express-jwt middleware to use the remote JWKS for your Auth0 account.
+Configure the express-jwt middleware so it uses the remote JWKS for your Auth0 account.
 
 ```js
 // server.js
@@ -75,9 +75,9 @@ const checkJwt = jwt({
 
 ## Configuring Scopes
 
-The `checkJwt` middleware above checks if the access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
+The `checkJwt` middleware shown above checks if the access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
 
-Scopes let you to define which resources can be accessed by the user with a given access token. For example, you might choose to give the read access to the `messages` resource if a user has the manager access level, and a write access to that resource if they have the administrator access level. 
+Scopes let to define which resources can be accessed by the user with a given access token. For example, you might choose to give the read access to the `messages` resource if a user has the manager access level, and a write access to that resource if they have the administrator access level. 
 
 To configure scopes, in your Auth0 dashboard, in the [APIs](${manage_url}/#/apis) section, click the **Scopes** tab. Configure the scopes you need.
 
@@ -87,7 +87,7 @@ This example uses the `read:messages` scope.
 
 ## Protect Individual Endpoints
 
-You can configure individual routes to look for a particular scope. To achive that, set up another middleware with the express-jwt-authz package. Provide an array of the required scopes and apply the middleware to any routes you want to add authorization to.
+You can configure individual routes to look for a particular scope. To achieve that, set up another middleware with the express-jwt-authz package. Provide an array of the required scopes and apply the middleware to any routes you want to add authorization to.
 
 Pass the `checkJwt` and `checkScopes` middlewares to the route you want to protect.
 
