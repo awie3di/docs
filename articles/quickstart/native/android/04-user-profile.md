@@ -24,7 +24,7 @@ This tutorial shows you how to get and modify the user's profile data with Auth0
 Before you continue with this tutorial, make sure that you have completed the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) tutorial. To call the API clients, you need a valid access token and ID token.
 :::
 
-Before launching the login process, you need to make sure you get a valid profile in the response. To do that, ask for the `openid profile email` scope. Find the snippet in which you initialize the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
+Before you launch the login process, make sure you will get a valid profile from the authorization server. To do that, ask for the `openid profile email` scope. Find the snippet in which you initialize the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
 
 ```java
 Auth0 auth0 = new Auth0(this);
@@ -99,7 +99,7 @@ usersClient.getProfile(userId)
         });
 ```
 
-## Access the Data Inside the `UserProfile` Profile
+## Access the Data Inside the Received Profile
 
 ### Default information
 
@@ -134,7 +134,7 @@ String country = (String) profile.getUserMetadata().get("country");
 ```
 
 ::: note
-You can choose the strings for subscripting the `user_metadata` map and the variable types you handle.
+You can choose the names and value types of the keys you use for subscripting the `user_metadata` map.
 :::
 
 #### B. App metadata
@@ -143,7 +143,7 @@ The `appMetadata` map contains fields that are usually added with a [Rule](/rule
 
 #### C. Extra information
 
-The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to the `UserProfile` getter method. For native platforms, this information is read-only.
+The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to any getter method in the `UserProfile` class. For native platforms, this information is read-only.
 
 ::: note
 To learn more about metadata, see the [metadata documentation](/metadata).

@@ -13,9 +13,9 @@ You can use a constructor that receives an Android Context if you have added the
 * `R.string.com_auth0_client_id`
 * `R.string.com_auth0_domain`
 
-If you prefer to hardcode the resources, use the constructor that receives both strings. Then, use the `WebAuthProvider` class to authenticate with any connection you enabled on your client in the  [Auth0 dashboard](${manage_url}/#/).
+If you prefer to hardcode the resources, use the constructor that receives both strings. Then, use the `WebAuthProvider` class to authenticate with any connection you enabled on your client in the [Auth0 dashboard](${manage_url}/#/).
 
-You need to make sure you get a reponse compliant with the OpenID Connect protocol. You can choose between two options:
+You need to make sure you get a response compliant with the OpenID Connect protocol. You can choose between two options:
 
 * Set the audience
 * Turn on the **OIDC conformant** switch in your Auth0 dashboard
@@ -24,7 +24,7 @@ You need to make sure you get a reponse compliant with the OpenID Connect protoc
 To turn on the **OIDC conformant** switch, in your [Client Settings](${manage_url}/#/applications/${account.clientId}/settings), click on **Show Advanced Settings** > **OAuth**. To learn more, read the [net flows documentation](/api-auth/intro#how-to-use-the-new-flows).
 :::
 
-After you call the `WebAuthProvider#start` function, the browser launches and shows the **Lock** widget. The callback URL contains the final result of the authentication process. 
+After you call the `WebAuthProvider#start` function, the browser launches and shows the **Lock** widget. After the user authenticates, they receive a callback URL with the final result of the authentication process. 
 
 ```java
 // app/src/main/java/com/auth0/samples/MainActivity.java
@@ -57,7 +57,7 @@ private void login() {
 
 ## Capture the Result
 
-Whitelist the callback URL for your app in the **Allowed Callback URLs** section in [Client settings](${manage_url}/#/clients). In that section, enter the following URL: 
+Whitelist the callback URL for your app in the **Allowed Callback URLs** section in [Client settings](${manage_url}/#/applications/${account.clientId}/settings). In that section, enter the following URL: 
 
 ```text
 demo://${account.namespace}/android/YOUR_APP_PACKAGE_NAME/callback

@@ -18,7 +18,7 @@ This tutorial shows you how to let users log in and maintain an active session w
   ]
 }) %>__
 
-You need the `Credentials` class to handle users' credentials. The class is composed of seven objects:
+You need the `Credentials` class to handle the user's credentials. The class is composed of seven objects:
 
 * `accessToken`: Access token used by the Auth0 API. To learn more, see the [access token documentation](/tokens/access-token).
 * `idToken`: Identity token that proves the identity of the user. To learn more, see the [ID token documentation](/tokens/id-token).
@@ -26,7 +26,7 @@ You need the `Credentials` class to handle users' credentials. The class is comp
 * `tokenType`: The type of tokens issued by the server.
 * `expiresIn`: The amount of seconds before the tokens expire.
 * `expiresAt`: The date when the tokens expire.
-* `scope`: The scope that was granted to a user. This information is shown only if the granted token is different than the requested one.
+* `scope`: The scope that was granted to a user. This information is shown only if the granted scope is different than the requested one.
 
 The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them in the [tokens documentation](https://auth0.com/docs/tokens).
 
@@ -102,9 +102,9 @@ if (accessToken == null) {
 
 ## Validate the Existing Token
 
-If the access token exists, the next step is to check if it is valid. 
+If the access token exists, check if it is valid. 
 You can choose between two options: 
-* Ssave the time when the user receives a new pair of credentials. Then, check if the time since the user got the access token exceeds the time defined in the `expires_in` value.
+* Save the `expires_in` value and the time when the user received a new pair of credentials. When you need to use the token, check if the time since the user got the access token exceeds the time defined in the `expires_in` value. The token is no longer valid when the `expires_in` value is exceeded. 
 * Call the Auth0 Authentication API and check the response.
 
 ::: note 
@@ -143,6 +143,7 @@ This tutorial shows how to use a refresh token. If you want users to re-enter th
 ::: panel
 Before you go further with this tutorial, read the [refresh token documentation](/refresh-token).
 It is important that you remember the following:
+* You must save the refresh token securely
 * Even though the refresh token cannot expire and must be securely saved, it can be revoked. 
 * The new pair of credentials will never have a different scope than the scope you requested during the first login.
 :::
@@ -198,7 +199,7 @@ private void logout() {
 Depending on the way you store users' credentials, you delete them differently. 
 :::
 
-### Optional: Encapsulate Token Handling
+### Optional: Encapsulate Session Handling
 
 Handling users' sessions is not a straightforward process. You can simplify it by storing token-related information and processes in a class. The class needs to separate the logic for handling users' sessions from the activity. 
 
