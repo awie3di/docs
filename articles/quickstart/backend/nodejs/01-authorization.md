@@ -73,13 +73,11 @@ const checkJwt = jwt({
 });
 ```
 
-## Configuring Scopes
+## Configure the Scopes
 
-The `checkJwt` middleware shown above checks if the access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
+The `checkJwt` middleware shown above checks if the user's access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
 
-Scopes let to define which resources can be accessed by the user with a given access token. For example, you might choose to give the read access to the `messages` resource if a user has the manager access level, and a write access to that resource if they have the administrator access level. 
-
-To configure scopes, in your Auth0 dashboard, in the [APIs](${manage_url}/#/apis) section, click the **Scopes** tab. Configure the scopes you need.
+<%= include('../_includes/_api_scopes_access_resources') %>
 
 ::: note
 This example uses the `read:messages` scope.
