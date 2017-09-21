@@ -52,11 +52,12 @@ AuthenticationAPIClient authClient = new AuthenticationAPIClient(auth0);
 It's suggested that you add both the Auth0 `domain` and `clientId` to the `strings.xml` file rather than hardcode them.
 :::
 
+To get the user's information:
 
-Use the access token and the `AuthenticationAPIClient` client to obtain the user's ID. 
-
-When you call the `AuthenticationAPIClient` client, it returns an instance of the `UserProfile` profile. This profile is a basic, OIDC-conformant profile, which guarantees only the `sub` claim. The `sub` claim contains the user's ID. Depending on the scope you requested, the remaining claims returned by the `UserProfile` are different. 
-
+1. Use the user's access token to create an instance of the `AuhenticationAPIClient` client.
+2. Call the `userInfo` method in the client. 
+You get an instance of the `UserProfile` profile. The profile is OIDC-conformant. Depending on the [scopes](https://auth0.com/docs/scopes/current) you requested, the profile contains different information.
+3. To get the user's ID, use the [Management API](https://auth0.com/docs/api/management/v2#!/Users).
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
