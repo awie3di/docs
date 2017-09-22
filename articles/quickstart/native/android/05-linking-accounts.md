@@ -5,7 +5,7 @@ seo_alias: android
 budicon: 345
 ---
 
-This tutorial shows you how to link two different accounts for the same user using Auth0.
+This tutorial will show you how to link two different accounts for the same user using Auth0.
 
 <%= include('../../../_includes/_package', {
   org: 'auth0-samples',
@@ -18,7 +18,7 @@ This tutorial shows you how to link two different accounts for the same user usi
   ]
 }) %>__
 
-## Before You Start
+## Before Starting
 
 ::: panel Complete the previous tutorials
 Before you continue with this tutorial, make sure that you have completed the previous tutorials. This tutorial assumes that:
@@ -28,7 +28,7 @@ Before you continue with this tutorial, make sure that you have completed the pr
 :::
 
 ::: note
-We recommend that you read the [Linking Accounts](/link-accounts) documentation to understand the process of linking accounts.
+It is highly recommended that you take a look at the [Linking Accounts](/link-accounts) documentation to understand the process of linking accounts.
 :::
 
 ## Enter Account Credentials
@@ -49,7 +49,7 @@ intent.putExtra(Constants.PRIMARY_USER_ID, profile.getId());
 startActivity(intent);
 ```
 
-Obtain the values in `LoginActivity`:
+In the `LoginActivity` we obtain those values:
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/LoginActivity.java
@@ -101,7 +101,7 @@ private void performLink(String secondaryIdToken) {
           });
 ```
 
-## Retrieve the Linked Accounts
+## Retrieve Linked Accounts
 
 After you get the user's ID, you can use it to obatin the user's full profile. Call the `getProfile` method in the `UsersAPIClient` client. The user's profile includes the linked accounts in the `UserIdentities` array. 
 
@@ -123,7 +123,7 @@ usersClient.getProfile(userInfo.getId())
 ```
 
 ::: note
-For more information, check the [UserIdentity.java class documentation](https://github.com/auth0/Auth0.Android/blob/master/auth0/src/main/java/com/auth0/android/result/UserIdentity.java).
+For more information, check the [UserIdentity.java](https://github.com/auth0/Auth0.Android/blob/master/auth0/src/main/java/com/auth0/android/result/UserIdentity.java) class.
 :::
 
 ### Unlink the Accounts

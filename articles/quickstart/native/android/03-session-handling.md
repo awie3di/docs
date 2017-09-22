@@ -5,7 +5,7 @@ seo_alias: android
 budicon: 280
 ---
 
-This tutorial shows you how to let users log in and maintain an active session with Auth0.
+This tutorial will show you how to login and maintain an active session with Auth0.
 
 <%= include('../../../_includes/_package', {
   org: 'auth0-samples',
@@ -28,15 +28,14 @@ You need the `Credentials` class to handle the user's credentials. The class is 
 * `expiresAt`: The date when the tokens expire.
 * `scope`: The scope that was granted to a user. This information is shown only if the granted scope is different than the requested one.
 
-The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them in the [tokens documentation](https://auth0.com/docs/tokens).
+The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them [here](https://auth0.com/docs/tokens).
 
-## Before You Start
 
-::: note
-Before you continue with this tutorial, make sure that you have completed the [Login](/quickstart/native/android/00-login) tutorial.
-:::
+## Before Starting
 
-Before you launch the login process, make sure you get a valid refresh token in the response. To do that, ask for the `offline_access` scope. Find the snippet in which you are initializing the `WebAuthProvider` class. To that snippet, add the line `withScope("openid offline_access")`.
+Be sure that you have completed the [Login](/quickstart/native/android/00-login) quickstart.
+
+Before launching the log in you need to ask for the `offline_access` scope in order to get a valid `refresh_token` in the response. Locate the snippet were you're initializing the `WebAuthProvider` and add the `withScope("openid offline_access")` line.
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -50,13 +49,9 @@ WebAuthProvider.init(auth0)
                 .start(LoginActivity.this, callback);
 ```
 
-## Save the User's Credentials
+## Save The User's Credentials
 
-Save the user's credentials obtained in the login success response.
-
-::: warning
-Make sure you use a secure method.
-:::
+Save **through a secure method** the user's credentials obtained in the login success response.
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -84,10 +79,11 @@ private final AuthCallback callback = new AuthCallback() {
 User credentials are stored in [Private mode](https://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE) in the seed project in the `SharedPreferences` file. You can achieve this with the `CredentialsManager`class. For details, check the implementation in the project code. There are better and more secure ways to store tokens, but we will not cover them in this tutorial.
 :::
 
-## Check for Tokens when the Application Starts
+## At Startup: Check Token Existence
 
-To save your users the effort of logging in every time they open your app, use their access tokens. You can check for the access token when a user starts the app. If you find the token, you can automatically log the user in and direct them straight to your app's main flow.  
+The main purpose of storing this token is to save users from having to re-enter their login credentials when relaunching the app. Once the app has launched, we need to check for the existence of an `access_token` to see if we can automatically log the user in and redirect the user straight into the app’s main flow, skipping the login screen.
 
+To do so, we check whether this value exists at startup to either prompt for login credentials or to try to perform an automated login.
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -100,16 +96,14 @@ if (accessToken == null) {
 }
 ```
 
-## Validate the Existing Token
+## Validate an Existing Token
 
 If the access token exists, check if it is valid. 
 You can choose between two options: 
 * Save the `expires_in` value and the time when the user received a new pair of credentials. When you need to use the token, check if the time since the user got the access token exceeds the time defined in the `expires_in` value. The token is no longer valid when the `expires_in` value is exceeded. 
 * Call the Auth0 Authentication API and check the response.
 
-::: note 
-This tutorial shows how to call the Auth0 Authentication API with the `/userinfo` endpoint.
-:::
+We will explain the latter approach by calling the `/userinfo` endpoint.
 
 
 ```java
@@ -130,15 +124,15 @@ aClient.userInfo(accessToken)
         });
 ```
 
-You need to decide how to deal with an invalid token. Typically, you can choose between two options: 
-* Ask the user to re-enter their credentials.
-* Use a refresh token to get a new valid access token.
+How you deal with a non-valid token is up to you. You will normally choose between two scenarios. You can either ask users to re-enter their credentials or use the `refresh_token` to get a new valid `access_token`.
 
 ::: note
-This tutorial shows how to use a refresh token. If you want users to re-enter their credentials, clear the stored data and prompt the login screen.
+If you want users to re-enter their credentials, you should clear the stored data and prompt the login screen.
 :::
 
-## Refresh the User's Session
+## Refreshing the Token
+
+We will use the previously saved `refresh_token` to get a new `access_token`. It is recommended that you read and understand the [refresh tokens documentation](/refresh-token) before proceeding. For example, you should remember that even though the refresh token cannot expire and must be securely saved, it can be revoked. Also note that the new pair of credentials will never have additional scope than the requested in the first login.
 
 ::: panel
 Before you go further with this tutorial, read the [refresh token documentation](/refresh-token).
@@ -148,7 +142,7 @@ It is important that you remember the following:
 * The new pair of credentials will never have a different scope than the scope you requested during the first login.
 :::
 
-Create an instance of the `AuthenticationAPIClient` object:
+First instantiate an `AuthenticationAPIClient`:
 
 ```java
 // app/src/main/java/com/auth0/samples/MainActivity.java
@@ -156,7 +150,7 @@ Create an instance of the `AuthenticationAPIClient` object:
 AuthenticationAPIClient aClient = new AuthenticationAPIClient(auth0);
 ```
 
-Use the `refresh_token` to get new credentials:
+Then use the `refresh_token` to get fresh new credentials:
 
 ```java
 // app/src/main/java/com/auth0/samples/MainActivity.java
@@ -179,11 +173,12 @@ aClient.renewAuth(refreshToken)
       });
 ```
 
+
 ## Log Out
 
-To log the user out, you must remove their credentials and navigate them to the login screen.
+To log the user out, you just need to remove the saved user's credentials and navigate them to the login screen.
 
-For example, you can do the following:
+An example would be:
 
 ```java
 // app/src/main/java/com/auth0/samples/MainActivity.java
@@ -196,7 +191,7 @@ private void logout() {
 ```
 
 ::: note
-Depending on the way you store users' credentials, you delete them differently. 
+Deleting the user credentials depends on how you have stored them.
 :::
 
 ### Optional: Encapsulate Session Handling
