@@ -54,8 +54,8 @@ It's suggested that you add both the Auth0 `domain` and `clientId` to the `strin
 
 To get the user's information:
 
-1. Use the user's access token to create an instance of the `AuhenticationAPIClient` client.
-2. Call the `userInfo` method in the client. 
+1. Create an instance of the `AuhenticationAPIClient` client.
+2. Use the user's access token to call the `userInfo` method in the client. 
 You get an instance of the `UserProfile` profile. The profile is OIDC-conformant. Depending on the [scopes](https://auth0.com/docs/scopes/current) you requested, the profile contains different information.
 3. To get the user's ID, use the [Management API](https://auth0.com/docs/api/management/v2#!/Users).
 
