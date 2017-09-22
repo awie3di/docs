@@ -82,7 +82,7 @@ private final AuthCallback callback = new AuthCallback() {
 
 ::: note
 User credentials are stored in [Private mode](https://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE) in the seed project in the `SharedPreferences` file.
-You can achieve this with the `CredentialsManager`class. You can check the implementation in the project code. There are better and more secure ways to store tokens, but we won't cover them in this tutorial.
+You can achieve this with the `CredentialsManager`class. To learn more, check the implementation in the project code. There are better and more secure ways to store tokens, but we will not cover them in this tutorial.
 :::
 
 ## Check for Tokens When the Application Starts
