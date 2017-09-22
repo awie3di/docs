@@ -28,7 +28,7 @@ To do that, check the `Authorization` header of an incoming HTTP request for a J
 
 To verify incoming JWTs, you can use the [express-jwt](https://github.com/auth0/express-jwt) package.
 
-To get your Auth0 public key and complete the verification process,with the package, you can use the [jwks-rsa](https://github.com/auth0/node-jwks-rsa) library. 
+To get your Auth0 public key and complete the verification process, with the package, you can use the [jwks-rsa](https://github.com/auth0/node-jwks-rsa) library. 
 
 To add the authorization middleware to your endpoints, you can use the [express-jwt-authz](https://github.com/auth0/express-jwt-authz) library.
 
@@ -75,7 +75,7 @@ const checkJwt = jwt({
 
 ## Configuring Scopes
 
-The `checkJwt` middleware shown above checks if the access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
+The `checkJwt` middleware shown above checks if the access token included in the request is valid. The middleware does not check if the token has the sufficient scope to access the requested resources.
 
 Scopes let to define which resources can be accessed by the user with a given access token. For example, you might choose to give the read access to the `messages` resource if a user has the manager access level, and a write access to that resource if they have the administrator access level. 
 
