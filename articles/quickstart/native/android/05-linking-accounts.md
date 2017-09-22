@@ -5,7 +5,7 @@ seo_alias: android
 budicon: 345
 ---
 
-This tutorial will show you how to link two different accounts for the same user using Auth0.
+This tutorial shows you how to link two different accounts for the same user using Auth0.
 
 <%= include('../../../_includes/_package', {
   org: 'auth0-samples',
@@ -18,7 +18,7 @@ This tutorial will show you how to link two different accounts for the same user
   ]
 }) %>__
 
-## Before Starting
+## Before You Start
 
 ::: panel Complete the previous tutorials
 Before you continue with this tutorial, make sure that you have completed the previous tutorials. This tutorial assumes that:
@@ -28,7 +28,7 @@ Before you continue with this tutorial, make sure that you have completed the pr
 :::
 
 ::: note
-It is highly recommended that you take a look at the [Linking Accounts](/link-accounts) documentation to understand the process of linking accounts.
+We recommend that you read the [Linking Accounts](/link-accounts) documentation to understand the process of linking accounts.
 :::
 
 ## Enter Account Credentials
@@ -49,7 +49,7 @@ intent.putExtra(Constants.PRIMARY_USER_ID, profile.getId());
 startActivity(intent);
 ```
 
-In the `LoginActivity` we obtain those values:
+Obtain the values in `LoginActivity`:
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/LoginActivity.java
@@ -103,7 +103,7 @@ private void performLink(String secondaryIdToken) {
 
 ## Retrieve Linked Accounts
 
-After you get the user's ID, you can use it to obatin the user's full profile. Call the `getProfile` method in the `UsersAPIClient` client. The user's profile includes the linked accounts in the `UserIdentities` array. 
+To obtain the user's full profile, use the user's ID to call the `getProfile` method in the `UsersAPIClient` response. The profile includes the linked accounts in the `UserIdentities` array.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java

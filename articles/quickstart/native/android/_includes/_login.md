@@ -2,7 +2,7 @@
 
 In the `login` method, create a new instance of the `Auth0` object to hold user credentials. 
 
-You can use a constructor that receives an Android Context if you have added the following String resources: 
+You can use a constructor that receives an Android context if you have added the following String resources: 
 * `R.string.com_auth0_client_id`
 * `R.string.com_auth0_domain`
 
@@ -10,7 +10,12 @@ If you prefer to hardcode the resources, use the constructor that receives both 
 
 You need to make sure you get a response compliant with the OpenID Connect protocol. You can choose between two options:
 
-To ensure Open ID Connect-compliant responses, you must either request an `audience` or enable the **OIDC Conformant** switch in your Auth0 dashboard under `Client / Settings / Advanced OAuth`. You can read more about this [here](https://auth0.com/docs/api-auth/intro#how-to-use-the-new-flows).
+* Request the audience
+* Turn on the **OIDC conformant** switch in your Auth0 dashboard
+
+::: note
+To turn on the **OIDC conformant** switch, in your [Client Settings](${manage_url}/#/applications/${account.clientId}/settings), click on **Show Advanced Settings** > **OAuth**. To learn more, read the [net flows documentation](/api-auth/intro#how-to-use-the-new-flows).
+:::
 
 After you call the `WebAuthProvider#start` function, the browser launches and shows the **Lock** widget. After the user authenticates, they receive a callback URL with the final result of the authentication process. 
 
@@ -87,7 +92,7 @@ The `AndroidManifest.xml` file should look like this:
 </manifest>
 ```
 
-There are many options to customize the authentication using the `WebAuthProvider` builder. Make sure to check them [here](/libraries/auth0-android#implementing-web-based-auth).
+There are many options to customize the authentication with the `WebAuthProvider` builder. Read about them in the [Auth0 SDK for Android](/libraries/auth0-android#implementing-web-based-auth) documentation.
 <div class="phone-mockup">
   <img src="/media/articles/native-platforms/android/login-android.png" alt="Mobile example screenshot" />
 </div>

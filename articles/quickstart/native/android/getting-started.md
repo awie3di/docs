@@ -12,7 +12,7 @@ Each tutorial in the series includes a link to a sample project. You can find al
 
 ## Dependencies
 
-Each tutorial uses the [Auth0.Android](https://github.com/auth0/Auth0.Android) library. It is a toolkit that lets you communicate with many of the basic [Auth0 API](https://auth0.com/docs/api) functions in a neat way.
+Each tutorial uses the [Auth0.Android](https://github.com/auth0/Auth0.Android) library. It is a toolkit that lets you communicate with many of the basic [Auth0 API](https://auth0.com/docs/api) functions.
 
 ## Create a Client
 

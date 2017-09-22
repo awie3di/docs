@@ -24,7 +24,7 @@ You can check for the latest version on the repository [Readme](https://github.c
 
 Add manifest placeholders required by the SDK. The placeholders are used internally to define an `intent-filter` to capture the authentication callback URL. 
 
-You do that by adding the next line:
+To add the manifest placeholders, add the next line:
 
 ```xml
 apply plugin: 'com.android.application'
@@ -47,5 +47,5 @@ android {
 Run **Sync Project with Gradle Files** inside Android Studio or execute `./gradlew clean assembleDebug` from the command line.
 
 ::: note
-For more information about using Gradle, check the [Gradle official documentation](https://gradle.org/getting-started-android-build/).
+For more information about using Gradle, check [Gradle official documentation](https://gradle.org/getting-started-android-build/).
 :::
