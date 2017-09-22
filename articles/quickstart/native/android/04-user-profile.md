@@ -5,7 +5,7 @@ seo_alias: android
 budicon: 292
 ---
 
-This tutorial will show you how to get and modify the user's profile data in your Android apps with Auth0.
+This tutorial shows you how to get and modify the user's profile data with Auth0 in your Android apps.
 
 <%= include('../../../_includes/_package', {
   org: 'auth0-samples',
@@ -18,9 +18,11 @@ This tutorial will show you how to get and modify the user's profile data in you
   ]
 }) %>__
 
-## Before Starting
+## Before You Start
 
-Be sure that you have completed the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) Quickstarts. You'll need a valid `access_token` and `id_token` to call the API clients.
+::: note
+Before you continue with this tutorial, make sure that you have completed the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) tutorial. To call the API clients, you need a valid access token and ID token.
+:::
 
 Before you launch the login process, make sure you will get a valid profile from the authorization server. To do that, ask for the `openid profile email` scope. Find the snippet in which you initialize the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
 
@@ -49,7 +51,7 @@ AuthenticationAPIClient authClient = new AuthenticationAPIClient(auth0);
 ```
 
 ::: note
-It's suggested that you add both the Auth0 `domain` and `clientId` to the `strings.xml` file rather than hardcode them.
+Do not hardcode the Auth0 `domain` and `clientId` values. We recommend you add them to the `strings.xml` file.
 :::
 
 To get the user's information:
@@ -98,14 +100,11 @@ usersClient.getProfile(userId)
         });
 ```
 
-
 ## Access the Data Inside the Received Profile
 
-## Access The Data Inside The UserProfile
+### Default information
 
-##### I. DEFAULT INFO
-
-At this point, you already have access to the `UserProfile`.
+At this point, you already have access to the `UserProfile` profile.
 You can use this data wherever you need it.
 
 Some examples are:
@@ -123,13 +122,13 @@ You cannot modify the UI inside the `onSuccess()` method because the method work
 * Create a handler to receive the information
 :::
 
-#### I. ADDITIONAL INFO
+### Additional information
 
-Besides the defaults, you can handle more information that is contained within any of the following `map`:
+You can handle additional information within any of the following maps:
 
-##### A. USER METADATA
+#### A. User metadata
 
-The `userMetadata` map contains fields related to the user profile that can be added from the client-side (e.g. when editing the profile). This tutorial explains how to achieve this. You can access its fields as follows:
+The `userMetadata` map contains user profile fields that can be added from the client-side session (e.g. when a user edits their profile). You can access this information in the following way:
 
 ```java
 String country = (String) profile.getUserMetadata().get("country");
@@ -139,28 +138,28 @@ String country = (String) profile.getUserMetadata().get("country");
 You can choose the names and value types of the keys you use for subscripting the `user_metadata` map.
 :::
 
-##### B. APP METADATA
+#### B. App metadata
 
-The `appMetadata` map contains fields that are usually added via a Rule or Hook, which is read-only for the native platform.
+The `appMetadata` map contains fields that are usually added with a [Rule](/rule) or a [Hook](/hooks). For native platforms, this information is read-only.
 
-##### C. EXTRA INFO
+#### C. Extra information
 
 The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to any getter method in the `UserProfile` class. For native platforms, this information is read-only.
 
 ::: note
-For further information on metadata, see the full documentation.
+To learn more about metadata, see the [metadata documentation](/metadata).
 :::
 
-## Update the User Profile
+## Update the User's Profile
 
-You can only update the user metadata. In order to do so you must create a `Map<String, Object>` and add the new metadata:
+You can only update the user metadata. To do this, create a `Map<String, Object>` object and add the new metadata:
 
 ```java
 Map<String, Object> userMetadata = new HashMap<>();
 userMetadata.put("country", "USA");
 ```
 
-And then with the `UsersAPIClient`, perform the update:
+Update the information with the `UsersAPIClient` client:
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java

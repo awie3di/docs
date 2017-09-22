@@ -5,7 +5,7 @@ seo_alias: android
 budicon: 546
 ---
 
-This tutorial demonstrates how to use a previously saved token to authenticate your API calls.
+This tutorial shows you how to use a previously saved token to authenticate your API calls.
 
 <%= include('../../../_includes/_package', {
   org: 'auth0-samples',
@@ -18,7 +18,7 @@ This tutorial demonstrates how to use a previously saved token to authenticate y
   ]
 }) %>__
 
-## Before Starting
+## Before You Start
 
 ::: panel Complete the previous tutorials
 Before you continue with this tutorial, make sure that you have completed the previous tutorials. This tutorial assumes that:
@@ -36,13 +36,22 @@ private static final String API_URL = "localhost:8080/secure";
 
 ## Get the User's Access Token
 
-Your first step is to get an `access_token`. Use the basic [Login](/quickstart/native/android/00-login) tutorial if you need some guidance.
-
-Create an instance of the `OkHttpClient` client and a new `Request`. Use the provided builder to customize the `Http` method, the URL and the headers in the request. Set the **Authorization** header with the token type and the user's access token.
+Get the user's access token. For instructions, see the [Login](/quickstart/native/android/00-login) tutorial. 
 
 ## Attach the Token
 
-To prepare the request in this example we use the [OkHttp](https://github.com/square/okhttp) library. Create the `OkHttpClient` instance and a new `Request`. We use the provided builder to customize the request Http method, URL and headers. Here we set the **Authorization Header** with the token type and the `access_token` that identifies the logged-in user.
+Attach the user's access token to the request you send to the API. 
+
+::: note
+In this example, we use the [OkHttp](https://github.com/square/okhttp) library.
+:::
+
+Create an instance of the `OkHttpClient` client and a new `Request`. Use the provided builder to customize the `Http` method, the URL and the headers in the request. Set the **Authorization** header with the token type and the user's access token.
+
+::: note
+Depending on the standards in your API, you configure the authorization header differently. The code below is just an example. 
+:::
+
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -54,10 +63,6 @@ Request request = new Request.Builder()
     .addHeader("Authorization", "Bearer " + accessToken);
     .build();
 ```
-
-::: note
-Notice that how you configure your authorization header should match the standards that you're using in your API, this is just an example of what it could look like.
-:::
 
 ## Send the Request
 
