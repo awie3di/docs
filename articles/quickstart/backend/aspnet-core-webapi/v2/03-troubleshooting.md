@@ -78,7 +78,7 @@ var options = new JwtBearerOptions
 app.UseJwtBearerAuthentication(options);
 ```
 
-## Debug Configuration Issues Using The Log Files 
+## Debug Configuration Issues Using Log Files 
 
 To debug potential configuration issues, inspect the log files for your application. For more information, refer to the [Logging in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging) document.
 
@@ -130,7 +130,7 @@ Look for the following warning message:
 Bearer was not authenticated. Failure message: IDX10501: Signature validation failed. Unable to match 'kid': 'NTF...'
 ```
 
-To resolve this issue, make sure that the signature algorithm for the JWT matches with the configuration of your middleware. 
+To resolve this issue, make sure that the algorithm for the JWT matches with the configuration of your middleware. 
 
 ## 3. Has your token expired?
 
@@ -144,7 +144,7 @@ Look for the following error message:
 IDX10223: Lifetime validation failed. The token is expired
 ```
 
-The resolve this issue, check if the token you are sending has not expired.
+To resolve this issue, check if the token you are sending has not expired.
 
 ::: note
 The value of the `exp` claim is a numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time. If you want to see the date/time for the value, visit [EpochConverter](http://www.epochconverter.com/).
@@ -159,14 +159,14 @@ The Issuer specified in your token must match exactly with your JWT middleware c
 Look for the following warning message:
 
 ::: note
-You will get this message only for the tokens sined with the HS256 algorithm.
+You will get this message only for the tokens signed with the HS256 algorithm.
 :::
 
 ```text
 IDX10205: Issuer validation failed.
 ```
 
-The resolve this issue, make sure that you specify the correct issuer for your JWT middeware. 
+To resolve this issue, make sure that you specify the correct issuer for your JWT middleware. 
 
 For HS256 signed tokens, specify the correct value for the `ValidIssuer` property of `TokenValidationParameters`.
 
@@ -188,6 +188,6 @@ Look for the following error message:
 IDX10214: Audience validation failed
 ```
 
-The resolve this issue, make sure you specify the correct audience for your JWT middeware. Depending on how your JWT middleware was configured, do the following:
+To resolve this issue, make sure you specify the correct audience for your JWT middleware. Depending on how your JWT middleware was configured, do the following:
 * Set the correct `Audience` property of `JwtBearerOptions`
 * Set the `ValidAudience` property of `TokenValidationParameters`

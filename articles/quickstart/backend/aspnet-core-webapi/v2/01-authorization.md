@@ -24,7 +24,7 @@ This tutorial shows you how to use access tokens from Auth0 to secure your ASP.N
 
 ## Before You Start
 
-If you want to follow along with this tutorial, you can download the [seed project](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/v2/Quickstart/00-Starter-Seed). The seed project is a basic ASP.NET Web API with a simple controller and some of the NuGet packages. It also contains an `appSettings.json` file where you can configure the Auth0-related settings for your application.
+If you want to follow along with this tutorial, you can download the [seed project](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/v2/Quickstart/00-Starter-Seed). The seed project is a basic ASP.NET Web API with a simple controller and some NuGet packages. It also contains an `appSettings.json` file where you can configure the Auth0-related settings for your application.
 
 To see what the project looks like after each of the steps, check the [Quickstart folder of the Samples repository](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/v2/Quickstart).
 
@@ -68,9 +68,9 @@ The ASP.NET Core JWT Bearer authentication handler downloads the JSON Web Key Se
 In your application, register the authentication services:
 
 1. Make a call to the `AddAuthentication` method.  
-2. Configure the JWT Bearer tokens as the default authentication scheme and defaut challenge scheme.
+2. Configure the JWT Bearer tokens as the default authentication scheme and default challenge scheme.
 3. Make a call to the `AddJwtBearerAuthentication` method to register the JWT Bearer authentication scheme.
-4. Configure your Auth0 domain as the authority and your Auth0 API identifier as the audience:
+4. Configure your Auth0 domain as the authority, and your Auth0 API identifier as the audience:
 
 ```csharp
 // Startup.cs
@@ -93,7 +93,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-To add the authentication middleware to the middleware pipeline, add a call to `UseAuthentication` method:
+To add the authentication middleware to the middleware pipeline, add a call to the `UseAuthentication` method:
 
 ```csharp
 // Startup.cs
@@ -209,7 +209,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-To maka a call to an API endpoint, make sure that a scope is present. To do that, add the `Authorize` attribute to an action. Then, in the `policy` parameter, add the policy name for the scope. 
+To make a call to an API endpoint, make sure that a scope is present. To do that, add the `Authorize` attribute to an action. Then, in the `policy` parameter, add the policy name for the scope. 
 
 ```csharp
 // Controllers/MessagesController.cs
