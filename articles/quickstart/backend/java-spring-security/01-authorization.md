@@ -14,7 +14,7 @@ budicon: 500
   ]
 }) %>
 
-This tutorial shows you how to protect and limit access to your Spring Security API endpoints. 
+This tutorial shows you how to protect your Spring Security API endpoints and limit access to resources in your API. 
 
 ## Create an API
 
