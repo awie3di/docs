@@ -28,7 +28,7 @@ To do that, check the `Authorization` header of an incoming HTTP request for a J
 
 To verify incoming JWTs, you can use the [express-jwt](https://github.com/auth0/express-jwt) package.
 
-To get your Auth0 public key and complete the verification process,with the package, you can use the [jwks-rsa](https://github.com/auth0/node-jwks-rsa) library. 
+To get your Auth0 public key and complete the verification process, you can use the [jwks-rsa](https://github.com/auth0/node-jwks-rsa) library with the package. 
 
 To add the authorization middleware to your endpoints, you can use the [express-jwt-authz](https://github.com/auth0/express-jwt-authz) library.
 
