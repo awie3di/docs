@@ -45,9 +45,9 @@ ${snippet(meta.snippets.dependenciesGradle)}
 
 ## Configure Your Spring Security API
 
-Your Spring Security API needs some information in order to authenticate against your Auth0 account. 
+Your Spring Security API needs some information to authenticate against your Auth0 account. 
 
-The sample project you can download from the top of this page comes with a configration file. You may need to update some of the entries with the values for your API. The filename is `/src/main/resources/auth0.properties` and it contains the following:
+The sample project you can download from the top of this page comes with a configuration file. You may need to update some of the entries with the values for your API. The filename is `/src/main/resources/auth0.properties` and it contains the following:
 
 ${snippet(meta.snippets.setup)}
 
@@ -91,9 +91,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 ## Configure the Protected Endpoints
 
-The example below shows how to implement CRUD methods and a login route for the Photos resource. 
+The example below shows how to implement CRUD (create, read, update and delete) methods and a login route for the Photos resource. 
 
-For the CRUD method, you need authentication and specific scopes. 
+For CRUD methods, you need authentication and specific scopes. 
 
 In the `AppConfig` class, add route matchers to the snippet. The `hasAuthority()` method provides a way to specify the required scope for the resource.
 
