@@ -67,10 +67,8 @@ The ASP.NET Core JWT Bearer authentication handler downloads the JSON Web Key Se
 
 In your application, register the authentication services:
 
-1. Make a call to the `AddAuthentication` method.  
-2. Configure the JWT Bearer tokens as the default authentication scheme and default challenge scheme.
-3. Make a call to the `AddJwtBearerAuthentication` method to register the JWT Bearer authentication scheme.
-4. Configure your Auth0 domain as the authority, and your Auth0 API identifier as the audience:
+1. Make a call to the `AddAuthentication` method. Configure the JWT Bearer tokens as the default authentication and challenge schemes.  
+2. Make a call to the `AddJwtBearer` method to register the JWT Bearer authentication scheme. Configure your Auth0 domain as the authority, and your Auth0 API identifier as the audience.
 
 ```csharp
 // Startup.cs
