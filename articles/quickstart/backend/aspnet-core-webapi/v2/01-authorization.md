@@ -24,9 +24,9 @@ This tutorial shows you how to use access tokens from Auth0 to secure your ASP.N
 
 ## Before You Start
 
-If you want to follow along with this tutorial, you can download the [seed project](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/v2/Quickstart/00-Starter-Seed). The seed project is a basic ASP.NET Web API with a simple controller and some NuGet packages. It also contains an `appSettings.json` file where you can configure the Auth0-related settings for your application.
+If you want to follow along with this tutorial, you can download the [seed project](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/master/Quickstart/00-Starter-Seed). The seed project is a basic ASP.NET Web API with a simple controller and some NuGet packages. It also contains an `appSettings.json` file where you can configure the Auth0-related settings for your application.
 
-To see what the project looks like after each of the steps, check the [Quickstart folder of the Samples repository](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/v2/Quickstart).
+To see what the project looks like after each of the steps, check the [Quickstart folder of the Samples repository](https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/master/Quickstart).
 
 <%= include('../../_includes/_api_create_new') %>
 
@@ -61,7 +61,7 @@ Install-Package Microsoft.AspNetCore.Authentication.JwtBearer
 
 ## Configure the Middleware
 
-<%= include('../../_includes/_api_jwks_description', { sampleLink: 'https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/v2/Samples/hs256' }) %>
+<%= include('../../_includes/_api_jwks_description', { sampleLink: 'https://github.com/auth0-samples/auth0-aspnetcore-webapi-samples/tree/master/Samples/hs256' }) %>
 
 The ASP.NET Core JWT Bearer authentication handler downloads the JSON Web Key Set (JWKS) file with the public key. The handler uses the JWKS file and the public key to verify the access token's signature.
 
