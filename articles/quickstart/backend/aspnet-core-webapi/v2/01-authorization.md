@@ -137,7 +137,7 @@ public class PingController : Controller
 
 The JWT middleware shown above verifies if the user's access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
 
-<%= include('../_includes/_api_scopes_access_resources') %>
+<%= include('../../_includes/_api_scopes_access_resources') %>
 
 ::: note
 This example uses the `read:messages` and `create:messages` scopes.
