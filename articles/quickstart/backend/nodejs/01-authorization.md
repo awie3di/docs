@@ -20,9 +20,7 @@ description: This tutorial demonstrates how to add authentication and authorizat
 
 <%= include('../_includes/_api_auth_preamble') %>
 
-This tutorial shows you how to protect resources in your application. 
-
-To do that, check the `Authorization` header of an incoming HTTP request for a JSON Web Token (JWT). Then, check if the token is valid. You can check the token's validity in an Express middleware function. If the user's access token is valid, the user can access the resources in the endpoint. If the user's access token is not valid, the application returns the `401 Authorization` error. You can apply the Express function to any endpoint you want to protect.
+Check the `Authorization` header of an incoming HTTP request for a JSON Web Token (JWT). Then, check if the token is valid. You can check the token's validity in an Express middleware function. If the user's access token is valid, the user can access the resources in the endpoint. If the user's access token is not valid, the application returns the `401 Authorization` error. You can apply the Express function to any endpoint you want to protect.
 
 ## Install the Dependencies
 
