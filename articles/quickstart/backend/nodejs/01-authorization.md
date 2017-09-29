@@ -20,7 +20,7 @@ description: This tutorial demonstrates how to add authentication and authorizat
 
 <%= include('../_includes/_api_auth_preamble') %>
 
-Check the `Authorization` header of an incoming HTTP request for a JSON Web Token (JWT). Then, check if the token is valid. You can check the token's validity in an Express middleware function. If the user's access token is valid, the user can access the resources in the endpoint. If the user's access token is not valid, the application returns the `401 Authorization` error. You can apply the Express function to any endpoint you want to protect.
+This guide shows you how to validate the token using the jwt-express middleware and how to check for appropriate scopes with the express-jwt-authz middleware. If the token is not valid or does not have the required scopes, the user gets a 401 Authorization error when they try to access the endpoints.
 
 ## Install the Dependencies
 
