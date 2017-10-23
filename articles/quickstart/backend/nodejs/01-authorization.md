@@ -20,15 +20,13 @@ description: This tutorial demonstrates how to add authentication and authorizat
 
 <%= include('../_includes/_api_auth_preamble') %>
 
-This tutorial shows you how to protect resources in your application. 
-
-To do that, check the `Authorization` header of an incoming HTTP request for a JSON Web Token (JWT). Then, check if the token is valid. You can check the token's validity in an Express middleware function. If the user's access token is valid, the user can access the resources in the endpoint. If the user's access token is not valid, the application returns the `401 Authorization` error. You can apply the Express function to any endpoint you want to protect.
+This guide shows you how to validate the token using the jwt-express middleware and how to check for appropriate scopes with the express-jwt-authz middleware. If the token is not valid or does not have the required scopes, the user gets a 401 Authorization error when they try to access the endpoints.
 
 ## Install the Dependencies
 
 To verify incoming JWTs, you can use the [express-jwt](https://github.com/auth0/express-jwt) package.
 
-To get your Auth0 public key and complete the verification process,with the package, you can use the [jwks-rsa](https://github.com/auth0/node-jwks-rsa) library. 
+To get your Auth0 public key and complete the verification process, you can use the [jwks-rsa](https://github.com/auth0/node-jwks-rsa) library with the package. 
 
 To add the authorization middleware to your endpoints, you can use the [express-jwt-authz](https://github.com/auth0/express-jwt-authz) library.
 
@@ -73,13 +71,11 @@ const checkJwt = jwt({
 });
 ```
 
-## Configuring Scopes
+## Configure the Scopes
 
-The `checkJwt` middleware shown above checks if the access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
+The `checkJwt` middleware shown above checks if the user's access token included in the request is valid. The middleware doesn't check if the token has the sufficient scope to access the requested resources.
 
-Scopes let to define which resources can be accessed by the user with a given access token. For example, you might choose to give the read access to the `messages` resource if a user has the manager access level, and a write access to that resource if they have the administrator access level. 
-
-To configure scopes, in your Auth0 dashboard, in the [APIs](${manage_url}/#/apis) section, click the **Scopes** tab. Configure the scopes you need.
+<%= include('../_includes/_api_scopes_access_resources') %>
 
 ::: note
 This example uses the `read:messages` scope.

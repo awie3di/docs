@@ -103,7 +103,7 @@ private void performLink(String secondaryIdToken) {
 
 ## Retrieve Linked Accounts
 
-The `AuthenticationAPIClient#userInfo` response doesn't include the identities array, but still you need to use it to obtain the user `id`. Then, by calling the `UsersAPIClient#getProfile` method you can obtain a user's full profile, which includes the linked accounts as an array of `UserIdentities`.
+After you get the user's ID, you can use it to obatin the user's full profile. Call the `getProfile` method in the `UsersAPIClient` client. The user's profile includes the linked accounts in the `UserIdentities` array. 
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
