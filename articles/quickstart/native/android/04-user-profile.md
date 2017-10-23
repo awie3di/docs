@@ -5,7 +5,7 @@ seo_alias: android
 budicon: 292
 ---
 
-This tutorial will show you how to get and modify the user's profile data in your Android apps with Auth0.
+This tutorial shows you how to get and modify the user's profile data with Auth0 in your Android apps.
 
 <%= include('../../../_includes/_package', {
   org: 'auth0-samples',
@@ -18,11 +18,13 @@ This tutorial will show you how to get and modify the user's profile data in you
   ]
 }) %>__
 
-## Before Starting
+## Before You Start
 
-Be sure that you have completed the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) Quickstarts. You'll need a valid `access_token` and `id_token` to call the API clients.
+::: note
+Before you continue with this tutorial, make sure that you have completed the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) tutorial. To call the API clients, you need a valid access token and ID token.
+:::
 
-Before you launch the login process, make sure you will get a valid profile from the authorization server. To do that, ask for the `openid profile email` scope. Find the snippet in which you initialize the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
+Before launching the login process, you need to make sure you get a valid profile in the response. To do that, ask for the `openid profile email` scope. Find the snippet in which you are initializing the `WebAuthProvider` class. To that snippet, add the line `withScope("openid profile email")`.
 
 ```java
 Auth0 auth0 = new Auth0(this);
@@ -35,7 +37,7 @@ WebAuthProvider.init(auth0)
 
 ## Request User Data
 
-Create instances of the API clients. You will use them to request the users' profile data.
+Create instances of the API clients. You will use them to request the user's profile data.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -49,14 +51,14 @@ AuthenticationAPIClient authClient = new AuthenticationAPIClient(auth0);
 ```
 
 ::: note
-It's suggested that you add both the Auth0 `domain` and `clientId` to the `strings.xml` file rather than hardcode them.
+Do not hardcode the Auth0 `domain` and `clientId` values. We recommend you add them to the `strings.xml` file.
 :::
-
 
 Use the access token and the `AuthenticationAPIClient` client to obtain the user's ID. 
 
-When you call the `AuthenticationAPIClient` client, it returns an instance of the `UserProfile` profile. This profile is a basic, OIDC-conformant profile, which guarantees only the `sub` claim. The `sub` claim contains the user's ID. Depending on the scope you requested, the remaining claims returned by the `UserProfile` are different. 
+When you call the `AuthenticationAPIClient` client, it returns an instance of the `UserProfile` profile. This profile is a basic, OIDC-conformant profile which guarantees only the `sub` claim. The `sub` claim contains the user's ID. Depending on the scope you requested, the remaining claims returned by the `UserProfile` are different. 
 
+When you get the `sub` value, call the [Management API](https://auth0.com/docs/api/management/v2#!/Users).
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -78,7 +80,7 @@ authenticationClient.userInfo(accessToken)
     });
 ```
 
-Use the `UsersAPIClient` client and the user's ID to get the full user profile.
+Use the `UsersAPIClient` client and the user's ID to get the full User profile.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -97,14 +99,11 @@ usersClient.getProfile(userId)
         });
 ```
 
+## Access the Data Inside the `UserProfile` Profile
 
-## Access the Data Inside the Received Profile
+### Default information
 
-## Access The Data Inside The UserProfile
-
-##### I. DEFAULT INFO
-
-At this point, you already have access to the `UserProfile`.
+At this point, you already have access to the `UserProfile` profile.
 You can use this data wherever you need it.
 
 Some examples are:
@@ -116,50 +115,50 @@ profile.getPictureURL();
 ```
 
 ::: panel Modifying the UI
-You cannot modify the UI inside the `onSuccess()` method because the method works in a second thread. To solve this issue, you can choose between three options:
+You can't modify the UI inside the `onSuccess()` method because the method works in a second thread. To solve this issue, you can:
 * Persist the data
 * Create a task in the UI thread
 * Create a handler to receive the information
 :::
 
-#### I. ADDITIONAL INFO
+### Additional information
 
-Besides the defaults, you can handle more information that is contained within any of the following `map`:
+You can handle additional information within any of the following maps:
 
-##### A. USER METADATA
+#### A. User metadata
 
-The `userMetadata` map contains fields related to the user profile that can be added from the client-side (e.g. when editing the profile). This tutorial explains how to achieve this. You can access its fields as follows:
+The `userMetadata` map contains user profile fields that can be added from the client-side session (e.g. when a user edits their profile). You can access this information in the following way:
 
 ```java
 String country = (String) profile.getUserMetadata().get("country");
 ```
 
 ::: note
-You can choose the names and value types of the keys you use for subscripting the `user_metadata` map.
+You can choose the strings for subscripting the `user_metadata` map and the variable types you handle.
 :::
 
-##### B. APP METADATA
+#### B. App metadata
 
-The `appMetadata` map contains fields that are usually added via a Rule or Hook, which is read-only for the native platform.
+The `appMetadata` map contains fields that are usually added with a [Rule](/rule) or a [Hook](/hooks). For native platforms, this information is read-only.
 
-##### C. EXTRA INFO
+#### C. Extra information
 
-The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to any getter method in the `UserProfile` class. For native platforms, this information is read-only.
+The `extraInfo` map contains additional values that are stored in Auth0 but not mapped to the `UserProfile` getter method. For native platforms, this information is read-only.
 
 ::: note
-For further information on metadata, see the full documentation.
+To learn more about metadata, see the [metadata documentation](/metadata).
 :::
 
-## Update the User Profile
+## Update the User's Profile
 
-You can only update the user metadata. In order to do so you must create a `Map<String, Object>` and add the new metadata:
+You can only update the user metadata. To do this, create a `Map<String, Object>` object and add the new metadata:
 
 ```java
 Map<String, Object> userMetadata = new HashMap<>();
 userMetadata.put("country", "USA");
 ```
 
-And then with the `UsersAPIClient`, perform the update:
+Update the information with the `UsersAPIClient` client:
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
