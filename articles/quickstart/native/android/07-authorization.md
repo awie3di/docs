@@ -18,17 +18,19 @@ This tutorial shows you how to use Auth0 to create access roles for your users. 
   ]
 }) %>__
 
-## Before Starting
+## Before You Start
 
 ::: note
 Before you continue with this tutorial, make sure that you have completed the [User Profile](04-user-profile) tutorial.
 :::
 
-Create a rule that assigns the following access roles to your user: 
-* An admin role
-* A regular user role
+## Create a Rule to Assign Roles
 
-To assign roles, go to the [New rule](${manage_url}/#/rules/new) page. In the **Access Control** section, select the **Set roles to a user** template. 
+Create a rule that assigns your users access roles: 
+* An admin role
+* A single user role
+
+To assign roles, go to the [New rule](${manage_url}/#/rules/new) page. In the **Access Control** section,  select the **Set roles to a user** template. 
 
 Edit the following line from the default script to match the conditions that fit your needs:
 
@@ -37,8 +39,8 @@ if (user.email.indexOf('@example.com') > -1)
 ```
 
 The default rules for assigning access roles are:
-* If the user's email contains `@example.com`, the user gets the admin role. 
-* If the user's email contains anything else, the user gets the regular user role.
+* If the user's email contains @example.com, the user gets the admin role
+* If the user's email contain anything else, the user gets the regular user role
 
 ::: note
 Depending on your needs, you can define roles other than admin and user.
@@ -58,7 +60,7 @@ In the demo app, we use `@admin.com` to validate the user:
 
 ## Test the Rule in Your Project
 
-Once you have the user profile, you can save the profile and access it at any point. To learn more about user profiles, see the [User Profile](04-user-profile) tutorial. 
+Once you have the user profile, you can save the profile and access it at any point. To learn more about user profile, see the [User Profile](04-user-profile) tutorial. 
 
 The user profile contains the access role assigned to the user. 
 
@@ -72,9 +74,9 @@ if (roles.contains("admin")) {
 ```
 
 ::: note
-Application metadata cannot be modified by users and the user metadata can be modified. Because of that, the information about user roles is stored in the `appMetadata` HashMap, not in the `userMetadata` HashMap.
+Application metadata can't be modified by users and the user metadata can be. Because of that, the information about user roles is in the `appMetadata` HashMap, not in the `userMetadata` HashMap.
 :::
 
-## Restrict Content Based On Access Level
+## Restrict Content Based on Access Level
 
 Now you can recognize the users with different roles in your app. You can use this information to give and restrict access to selected features in your app to users with different roles.

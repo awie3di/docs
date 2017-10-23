@@ -18,7 +18,7 @@ This tutorial shows you how to let users log in and maintain an active session w
   ]
 }) %>__
 
-You need the `Credentials` class to handle the user's credentials. The class is composed of seven objects:
+You need the `Credentials` class to handle users' credentials. The class is composed of seven objects:
 
 * `accessToken`: Access token used by the Auth0 API. To learn more, see the [access token documentation](/tokens/access-token).
 * `idToken`: Identity token that proves the identity of the user. To learn more, see the [ID token documentation](/tokens/id-token).
@@ -26,13 +26,13 @@ You need the `Credentials` class to handle the user's credentials. The class is 
 * `tokenType`: The type of tokens issued by the server.
 * `expiresIn`: The amount of seconds before the tokens expire.
 * `expiresAt`: The date when the tokens expire.
-* `scope`: The scope that was granted to a user. This information is shown only if the granted scope is different than the requested one.
+* `scope`: The scope that was granted to a user. This information is shown only if the granted token is different than the requested one.
 
-The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them in the [tokens](https://auth0.com/docs/tokens) documentation.
+The tokens are the objects used to prove your identity against the Auth0 APIs. Read more about them in the [tokens documentation](https://auth0.com/docs/tokens).
 
 ## Before You Start
 
-:: note
+::: note
 Before you continue with this tutorial, make sure that you have completed the [Login](/quickstart/native/android/00-login) tutorial.
 :::
 
@@ -50,7 +50,7 @@ WebAuthProvider.init(auth0)
                 .start(LoginActivity.this, callback);
 ```
 
-## Save The User's Credentials
+## Save the User's Credentials
 
 Save the user's credentials obtained in the login success response.
 
@@ -82,12 +82,13 @@ private final AuthCallback callback = new AuthCallback() {
 
 ::: note
 User credentials are stored in [Private mode](https://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE) in the seed project in the `SharedPreferences` file.
-You can achieve this with the `CredentialsManager`class. To learn more, check the implementation in the project code. There are better and more secure ways to store tokens, but we will not cover them in this tutorial.
+You can achieve this with the `CredentialsManager`class. You can check the implementation in the project code. There are better and more secure ways to store tokens, but we won't cover them in this tutorial.
 :::
 
-## Check for Tokens When the Application Starts
+## Check for Tokens when the Application Starts
 
-To save your users the effort of logging in every time they open your app, use their access tokens. You can check for the access token when a user starts the app. If you find the token, you can automatically log the user in and direct them straight to your app's main flow. 
+To save your users the effort of logging in every time they open your app, use their access tokens. You can check for the access token when a user starts the app. If you find the token, you can automatically log the user in and direct them straight to your app's main flow.  
+
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -100,16 +101,17 @@ if (accessToken == null) {
 }
 ```
 
-## Validate an Existing Token
+## Validate the Existing Token
 
-If the access token exists, check if it is valid. 
-You can choose between two options: 
-* Save the `expires_in` value and the time when the user received a new pair of credentials. When you need to use the token, check if the time since the user got the access token exceeds the time defined in the `expires_in` value. The token is no longer valid when the `expires_in` value is exceeded. 
+If the access token exists, the next step is to check if it's valid. 
+You can do it one of two ways: 
+* If you save the time when the user receives a new pair of credentials, you can check if the time since the user got the access token exceedes the time defined in the `expires_in` value. W
 * Call the Auth0 Authentication API and check the response.
 
 ::: note 
 This tutorial shows how to call the Auth0 Authentication API with the `/userinfo` endpoint.
 :::
+
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -154,7 +156,7 @@ Create an instance of the `AuthenticationAPIClient` object:
 AuthenticationAPIClient aClient = new AuthenticationAPIClient(auth0);
 ```
 
-Use the refresh token to get new credentials:
+Use the `refresh_token` to get new credentials:
 
 ```java
 // app/src/main/java/com/auth0/samples/MainActivity.java
@@ -197,7 +199,7 @@ private void logout() {
 Depending on the way you store users' credentials, you delete them differently. 
 :::
 
-### Optional: Encapsulate Session Handling
+### Optional: Encapsulate Token Handling
 
 Handling users' sessions is not a straightforward process. You can simplify it by storing token-related information and processes in a class. The class needs to separate the logic for handling users' sessions from the activity. 
 

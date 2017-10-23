@@ -37,7 +37,7 @@ WebAuthProvider.init(auth0)
 
 ## Request User Data
 
-Create instances of the API clients. You will use them to request the users' profile data.
+Create instances of the API clients. You will use them to request the user's profile data.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -54,12 +54,11 @@ AuthenticationAPIClient authClient = new AuthenticationAPIClient(auth0);
 Do not hardcode the Auth0 `domain` and `clientId` values. We recommend you add them to the `strings.xml` file.
 :::
 
-To get the user's information:
+Use the access token and the `AuthenticationAPIClient` client to obtain the user's ID. 
 
-1. Create an instance of the `AuhenticationAPIClient` client.
-2. Use the user's access token to call the `userInfo` method in the client. 
-You get an instance of the `UserProfile` profile. The profile is OIDC-conformant. Depending on the [scopes](https://auth0.com/docs/scopes/current) you requested, the profile contains different information.
-3. To get the user's ID, use the [Management API](https://auth0.com/docs/api/management/v2#!/Users).
+When you call the `AuthenticationAPIClient` client, it returns an instance of the `UserProfile` profile. This profile is a basic, OIDC-conformant profile which guarantees only the `sub` claim. The `sub` claim contains the user's ID. Depending on the scope you requested, the remaining claims returned by the `UserProfile` are different. 
+
+When you get the `sub` value, call the [Management API](https://auth0.com/docs/api/management/v2#!/Users).
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -81,7 +80,7 @@ authenticationClient.userInfo(accessToken)
     });
 ```
 
-Use the `UsersAPIClient` client and the user's ID to get the full user profile.
+Use the `UsersAPIClient` client and the user's ID to get the full User profile.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -100,7 +99,7 @@ usersClient.getProfile(userId)
         });
 ```
 
-## Access the Data Inside the Received Profile
+## Access the Data Inside the `UserProfile` Profile
 
 ### Default information
 
@@ -116,7 +115,7 @@ profile.getPictureURL();
 ```
 
 ::: panel Modifying the UI
-You cannot modify the UI inside the `onSuccess()` method because the method works in a second thread. To solve this issue, you can choose between three options:
+You can't modify the UI inside the `onSuccess()` method because the method works in a second thread. To solve this issue, you can:
 * Persist the data
 * Create a task in the UI thread
 * Create a handler to receive the information
@@ -135,7 +134,7 @@ String country = (String) profile.getUserMetadata().get("country");
 ```
 
 ::: note
-You can choose the key strings and value types you use for subscripting the `user_metadata` map.
+You can choose the strings for subscripting the `user_metadata` map and the variable types you handle.
 :::
 
 #### B. App metadata
