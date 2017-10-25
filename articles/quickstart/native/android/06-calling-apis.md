@@ -20,13 +20,11 @@ This tutorial demonstrates how to use a previously saved token to authenticate y
 
 ## Before Starting
 
-::: panel Complete the previous tutorials
 Before you continue with this tutorial, make sure that you have completed the previous tutorials. This tutorial assumes that:
-* You have completed the [Session Handling](/quickstart/native/android/03-session-handling tutorial and you know how to handle the `Credentials` object.
+* You have completed the [Session Handling](/quickstart/native/android/03-session-handling) tutorial and you know how to handle the `Credentials` object.
 * You have set up a backend application as API. To learn how to do it, follow one of the [backend tutorials](https://auth0.com/docs/quickstart/backend). 
-:::
 
-After you set up an API, obtain the endpoint where your users authenticate. Declare the endpoint as a constant in the current class:
+After you set up an API, declare the endpoint you need to call as a constant in the current class:
 
 ```java
 // app/src/main/java/com/auth0/samples/LoginActivity.java
@@ -40,7 +38,9 @@ Your first step is to get an `access_token`. Use the basic [Login](/quickstart/n
 
 Create an instance of the `OkHttpClient` client and a new `Request`. Use the provided builder to customize the `Http` method, the URL and the headers in the request. Set the **Authorization** header with the token type and the user's access token.
 
-## Attach the Token
+::: note
+Depending on the standards in your API, you configure the authorization header differently. The code below is just an example.
+:::
 
 To prepare the request in this example we use the [OkHttp](https://github.com/square/okhttp) library. Create the `OkHttpClient` instance and a new `Request`. We use the provided builder to customize the request Http method, URL and headers. Here we set the **Authorization Header** with the token type and the `access_token` that identifies the logged-in user.
 
@@ -85,4 +85,4 @@ client.newCall(request).enqueue(new Callback() {
 
 Check if the request was made and if the response that came back was what you expected. 
 
-You need to configure your server side to protect your API endpoints with the secret key for your Auth0 client. In this example, you can use the user's access token issued by Auth0 to call Auth0 APIs.
+You need to configure your server side to protect your API endpoints with the key for your Auth0 client. In this example, you can use the user's access token issued by Auth0 to call Auth0 APIs.

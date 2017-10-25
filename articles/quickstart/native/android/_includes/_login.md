@@ -1,6 +1,17 @@
 ## Start the Authentication
 
-In the `login` method, create a new instance of the `Auth0` object to hold user credentials. 
+The [Auth0 hosted login page](/hosted-pages/login) is the easiest way to set up authentication in your application. We recommend using the Auth0 hosted login page for the best experience, best security and the fullest array of features.
+
+::: note
+You can also embed the Lock widget directly in your application. If you use this method, some features, such as single sign-on, will not be accessible. 
+To learn how to embed the Lock widget in your application, follow the [Embedded Login sample](https://github.com/auth0-samples/auth0-android-sample/tree/embedded-login/01-Embedded-Login).
+:::
+
+::: note
+Read the [Browser-Based vs. Native Login Flows on Mobile Devices](/tutorials/browser-based-vs-native-experience-on-mobile) article to learn how to choose between the two types of login flows.
+:::
+
+In the `login` method, create a new instance of the `Auth0` class to hold user credentials. 
 
 You can use a constructor that receives an Android Context if you have added the following String resources: 
 * `R.string.com_auth0_client_id`
@@ -10,9 +21,14 @@ If you prefer to hardcode the resources, use the constructor that receives both 
 
 You need to make sure you get a response compliant with the OpenID Connect protocol. You can choose between two options:
 
-To ensure Open ID Connect-compliant responses, you must either request an `audience` or enable the **OIDC Conformant** switch in your Auth0 dashboard under `Client / Settings / Advanced OAuth`. You can read more about this [here](https://auth0.com/docs/api-auth/intro#how-to-use-the-new-flows).
+* Set the audience
+* Turn on the **OIDC conformant** switch in your Auth0 dashboard
+  		  
+::: note
+To turn on the **OIDC conformant** switch, in your [Client Settings](${manage_url}/#/applications/${account.clientId}/settings), click on **Show Advanced Settings** > **OAuth**.
+:::
 
-After you call the `WebAuthProvider#start` function, the browser launches and shows the **Lock** widget. After the user authenticates, they receive a callback URL with the final result of the authentication process. 
+After you call the `WebAuthProvider#start` function, the browser launches and shows the **Lock** widget. Once the user authenticates, the callback URL is called. The callback URL contains the final result of the authentication process. 
 
 ```java
 // app/src/main/java/com/auth0/samples/MainActivity.java

@@ -36,8 +36,7 @@ if (user.email.indexOf('@example.com') > -1)
 to match the condition that fits your needs.
 
 The default rules for assigning access roles are:
-* If the user's email contains `@example.com`, the user gets the admin role. 
-* If the user's email contains anything else, the user gets the regular user role.
+* If the user's email contains `@example.com`, the user gets the admin role. If the email contains anything else, the user gets the regular user role.
 
 ::: note
 You can define more roles other than `admin` and `user`, depending on your product requirements.

@@ -20,26 +20,18 @@ This tutorial will show you how to link two different accounts for the same user
 
 ## Before Starting
 
-::: panel Complete the previous tutorials
 Before you continue with this tutorial, make sure that you have completed the previous tutorials. This tutorial assumes that:
 * You have integrated [Auth0](https://github.com/auth0/Auth0.Android) as a dependency in your project. 
 * You are familiar with the `WebAuthProvider` class. To learn more, see the [Login](/quickstart/native/android/00-login) and the [Session Handling](/quickstart/native/android/03-session-handling) tutorials.
-* You are familiar with the concepts of `userId` and `idToken`. You can find info about them in the [Session Handling](/quickstart/native/android/03-session-handling) and the [User Profile](/quickstart/native/android/04-user-profile) tutorials.
-:::
+* You are familiar with the concepts of `userId` and `idToken`. You can find info about them in the [Session Handling](/quickstart/native/android/03-session-handling) and the [User Profile](/quickstart/native/android/04-user-profile) tutorial.
 
-::: note
-It is highly recommended that you take a look at the [Linking Accounts](/link-accounts) documentation to understand the process of linking accounts.
-:::
+We recommend that you read the [Linking Accounts](/link-accounts) documentation to understand the process of linking accounts.
 
 ## Enter Account Credentials
 
 Your users may want to link their other accounts to the account they are logged in to. 
 
-::: note
-Use the [Auth0 Android](https://github.com/auth0/Auth0.Android) library.
-:::
-
-To allow your users to link their accounts, in your requests, you need to send an additional boolean value. The boolean value tells the application that it is a secondary login, in addition to the `userID` value obtained after the first login.
+To achieve this, you need to store the user id for the logged user in the Intent so they can be accessed in other activities.
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
@@ -49,7 +41,7 @@ intent.putExtra(Constants.PRIMARY_USER_ID, profile.getId());
 startActivity(intent);
 ```
 
-In the `LoginActivity` we obtain those values:
+Obtain the stored values in `LoginActivity`:
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/LoginActivity.java
@@ -58,7 +50,7 @@ boolean linkSessions = getIntent().getExtras().getBoolean(Constants.LINK_ACCOUNT
 String userId = getIntent().getExtras().getString(Constants.PRIMARY_USER_ID);
 ```
 
-In the login response, check the `linkSessions` boolean value. Depending on the value, decide whether to show `MainActivity` as usual, or continue to link the accounts:
+In the login response, based on the boolean flag set in the first step, decide if you need to show the `MainActivity` screen, or continue to link the accounts. 
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/LoginActivity.java
@@ -103,7 +95,7 @@ private void performLink(String secondaryIdToken) {
 
 ## Retrieve Linked Accounts
 
-The `AuthenticationAPIClient#userInfo` response doesn't include the identities array, but still you need to use it to obtain the user `id`. Then, by calling the `UsersAPIClient#getProfile` method you can obtain a user's full profile, which includes the linked accounts as an array of `UserIdentities`.
+To obtain the user's full profile, use the user's ID to call the `getProfile` method in the `UsersAPIClient` class. The profile includes the linked accounts as the `UserIdentities` array. 
 
 ```java
 // app/src/main/java/com/auth0/samples/activities/MainActivity.java
