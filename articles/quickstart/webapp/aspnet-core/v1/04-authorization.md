@@ -8,7 +8,7 @@ budicon: 546
   org: 'auth0-samples',
   repo: 'auth0-aspnetcore-mvc-samples',
   branch: 'v1',
-  path: 'Quickstart/05-Authorization',
+  path: 'Quickstart/04-Authorization',
   requirements: [
     '.NET Core 1.1.0',
     'ASP.NET Core 1.1.1',
