@@ -39,7 +39,6 @@ The NuGet package creates three settings on `<appSettings>`. Replace them with t
 
 ${snippet(meta.snippets.setup)}
 
-<<<<<<< HEAD
 ## Integrate Auth0.js
 
 Integrate the Auth0.js library into your application.
@@ -57,11 +56,11 @@ var webAuth = new auth0.WebAuth({
 });
 </script>
 <button onclick="webAuth.authorize();">Log In</button>
-=======
-## 4. Authenticating the user
+```
 
-To authenticate the user, we will redirect to Auth0's `/authorize` endpoint:
+## Authenticate the User
 
+To authenticate the user, redirect them to the `/authorize` endpoint:
 
 ```c#
 // Controllers/AccountController.cs
@@ -91,7 +90,6 @@ public ActionResult Login(string returnUrl)
 
     return new RedirectResult(authorizeUrlBuilder.Build().ToString());
 }
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 ```
 
 ## Access User Information
@@ -123,11 +121,7 @@ On each request, the `LoginCallback.ashx` handler and the `Http` module generate
 * The `<location path='..'>` protection
 * Code-based checks, for example, `User.Identity.IsAuthenticated`
 
-<<<<<<< HEAD
 ### Redirect to a login page
-=======
-### Automatically redirect to the login page
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 If the request is not authenticated, the `[Authorize]` attribute generates a 401 (Unauthorized) error. If you want to automatically redirect users to the login page, you can use the Forms Authentication module. 
 
@@ -142,31 +136,7 @@ In `web.config`, configure the following:
 </system.web>
 ```
 
-<<<<<<< HEAD
-In the example above, you are redirecting the user to a `Login` action in an `Account` controller. Depending on what you configure, the `Login` action can:
-* Return a view that integrates Lock
-* Return a view that shows a custom UI
-* Redirect the user to Auth0 for authentication
-
-```cs
-// Controllers/HomeController.cs
-public ActionResult Login(string returnUrl)
-{
-  if (string.IsNullOrEmpty(returnUrl) || !this.Url.IsLocalUrl(returnUrl))
-  {
-    returnUrl = "/";
-  }
-
-  // you can use this for the 'authParams.state' parameter
-  // in Lock, to provide a return URL after the authentication flow.
-  ViewBag.State = "ru="+ HttpUtility.UrlEncode(returnUrl);
-
-  return this.View();
-}
-```
-=======
-In the above example, we are redirecting to the `Login` action in an `Account` controller, which in turn redirects to Auth0's `/authorize` endpoint for authentication, as described in [#4](#4-authenticating-the-user).
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
+In the example above, you are redirecting the userto the `Login` action in an `Account` controller. The action redirects them to Auth0's `/authorize` endpoint for authentication, as described in the [Authenticate the User](#authenticate-the-user) step.
 
 ### Set up logout
 
