@@ -11,7 +11,7 @@ budicon: 448
   path: 'Quickstart/00-Starter-Seed/auth0-aspnet-mvc4-sample/',
   requirements: [
     'Microsoft Visual Studio 2017',
-    'Auth0-ASPNET v2.0.0'
+    'Auth0-ASPNET v2.1.0'
   ]
 }) %>
 
@@ -39,6 +39,7 @@ The NuGet package creates three settings on `<appSettings>`. Replace them with t
 
 ${snippet(meta.snippets.setup)}
 
+<<<<<<< HEAD
 ## Integrate Auth0.js
 
 Integrate the Auth0.js library into your application.
@@ -56,6 +57,41 @@ var webAuth = new auth0.WebAuth({
 });
 </script>
 <button onclick="webAuth.authorize();">Log In</button>
+=======
+## 4. Authenticating the user
+
+To authenticate the user, we will redirect to Auth0's `/authorize` endpoint:
+
+
+```c#
+// Controllers/AccountController.cs
+public ActionResult Login(string returnUrl)
+{
+    var client = new AuthenticationApiClient(
+        new Uri(string.Format("https://{0}", ConfigurationManager.AppSettings["auth0:Domain"])));
+
+
+    var request = this.Request;
+    var redirectUri = new UriBuilder(request.Url.Scheme, request.Url.Host, this.Request.Url.IsDefaultPort ? -1 : request.Url.Port, "LoginCallback.ashx");
+
+    var authorizeUrlBuilder = client.BuildAuthorizationUrl()
+        .WithClient(ConfigurationManager.AppSettings["auth0:ClientId"])
+        .WithRedirectUrl(redirectUri.ToString())
+        .WithResponseType(AuthorizationResponseType.Code)
+        .WithScope("openid profile")
+        // adding this audience will cause Auth0 to use the OIDC-Conformant pipeline
+        // you don't need it if your client is flagged as OIDC-Conformant (Advance Settings | OAuth)
+        .WithAudience("https://" + @ConfigurationManager.AppSettings["auth0:Domain"] + "/userinfo");
+
+    if (!string.IsNullOrEmpty(returnUrl))
+    {
+        var state = "ru=" + HttpUtility.UrlEncode(returnUrl);
+        authorizeUrlBuilder.WithState(state);
+    }
+
+    return new RedirectResult(authorizeUrlBuilder.Build().ToString());
+}
+>>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 ```
 
 ## Access User Information
@@ -87,7 +123,11 @@ On each request, the `LoginCallback.ashx` handler and the `Http` module generate
 * The `<location path='..'>` protection
 * Code-based checks, for example, `User.Identity.IsAuthenticated`
 
+<<<<<<< HEAD
 ### Redirect to a login page
+=======
+### Automatically redirect to the login page
+>>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 If the request is not authenticated, the `[Authorize]` attribute generates a 401 (Unauthorized) error. If you want to automatically redirect users to the login page, you can use the Forms Authentication module. 
 
@@ -102,6 +142,7 @@ In `web.config`, configure the following:
 </system.web>
 ```
 
+<<<<<<< HEAD
 In the example above, you are redirecting the user to a `Login` action in an `Account` controller. Depending on what you configure, the `Login` action can:
 * Return a view that integrates Lock
 * Return a view that shows a custom UI
@@ -123,6 +164,9 @@ public ActionResult Login(string returnUrl)
   return this.View();
 }
 ```
+=======
+In the above example, we are redirecting to the `Login` action in an `Account` controller, which in turn redirects to Auth0's `/authorize` endpoint for authentication, as described in [#4](#4-authenticating-the-user).
+>>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 ### Set up logout
 
@@ -131,7 +175,7 @@ To clear the cookie generated on login, use the `FederatedAuthentication.Session
 The example below shows a typical logout action on ASP.Net MVC:
 
 ```cs
-// Controllers/HomeController.cs
+// Controllers/AccountController.cs
 public RedirectResult Logout()
 {
   // Clear the session cookie
