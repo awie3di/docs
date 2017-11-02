@@ -7,8 +7,8 @@ budicon: 280
 <%= include('../../../../_includes/_package', {
   org: 'auth0-samples',
   repo: 'auth0-aspnetcore-mvc-samples',
-  path: 'Quickstart/03-Storing-Tokens',
-  branch: 'v2',
+  path: 'Quickstart/02-Storing-Tokens',
+  branch: 'master',
   requirements: [
     '.NET Core SDK 2.0',
     '.NET Core 2.0',
