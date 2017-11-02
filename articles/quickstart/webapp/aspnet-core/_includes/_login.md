@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-## Configure the OpenID Connect Middleware
-=======
 ## Add Authentication with Auth0
 
 The [Auth0 hosted login page](/hosted-pages/login) is the easiest way to set up authentication in your application. We recommend using the Auth0 hosted login page for the best experience, best security and the fullest array of features. This guide will use it to provide a way for your users to log in to your ASP.NET Core application.
@@ -10,7 +7,6 @@ You can also create a custom login for prompting the user for their username and
 :::
 
 ## Configure OpenID Connect Middleware
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 To enable authentication, in your ASP.NET Core application, use the OpenID Connect (OIDC) middleware. Go to the `ConfigureServices` method of your `Startup` class. To add the authentication services, call the `AddAuthentication` method. To enable cookie authentication, call the `AddCookie` method. 
 
@@ -304,10 +300,6 @@ When the user selects the **Log In** button, the OIDC middleware redirects them 
 8. The OIDC middleware extracts the user information from the claims on the ID token.
 9. The OIDC middleware returns a successful authentication response and a cookie which indicates that the user is authenticated. The cookie contains claims with the user's information. The cookie is stored, so that the cookie middleware will automatically authenticate the user on any future requests. The OIDC middleware receives no more requests, unless it is explicitly challenged.
 
-<<<<<<< HEAD
 ## Optional: Create a Custom Login Screen
 
 If you want to create a custom login screen, follow the [Custom Login tutorial](/quickstart/webapp/aspnet-core/v2/02-login-custom). 
-=======
-Continue to the [Storing Tokens step](/quickstart/webapp/aspnet-core/v2/02-storing-tokens) which will demonstrate how you can store the tokens returned by Auth0.
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020

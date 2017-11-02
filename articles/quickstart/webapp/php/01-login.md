@@ -24,13 +24,9 @@ ${snippet(meta.snippets.dependencies)}
 This sample uses [Composer](https://getcomposer.org/doc/00-intro.md), a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs. Then, it installs them in your project.
 :::
 
-<<<<<<< HEAD
-## Configure the Auth0 PHP Plugin
-=======
 ## Configure Auth0 PHP SDK
 
 Configure the Auth0 PHP SDK in each page that will use it.
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 ```php
 use Auth0\SDK\Auth0;
@@ -88,11 +84,7 @@ In this case, `redirectUrl` should look like this:
 http://yourUrl/
 ```
 
-<<<<<<< HEAD
-## Integrate Auth0.js
-=======
 ## Trigger Login With Auth0 PHP SDK
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 ```html
 <!-- index.php -->
@@ -109,20 +101,12 @@ http://yourUrl/
 ```
 
 ::: note
-<<<<<<< HEAD
-The `redirectUrl` specified in the `webAuth` constructor must match the URL specified in the previous step.
-=======
-The `redirect_uri` specified in the `Auth0` constructor **must match** the one specified in the previous step
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
+The `redirectUrl` specified in the `Auth0` constructor must match the URL specified in the previous step.
 :::
 
 ## Access User Information
 
-<<<<<<< HEAD
 You can access the user's information with the `getUser` method from Auth0.
-=======
-You can access the user information via the `getUser` method from Auth0.
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
 
 ```php
 <?php

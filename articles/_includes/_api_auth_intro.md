@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-You may want to limit the access to your APIs for users, servers, or servers. This tutorial shows you how to use the authorization features in the OAuth 2.0 framework to limit the access to your or third-party applications. 
-For more information, read the [API authorization](/api-auth) documentation.
-=======
 This tutorial shows you how to use the authorization features in OAuth 2.0 to limit API access to your applications or third-party applications. 
-For more information, read the [API authorization](https://auth0.com/docs/api-auth) documentation.
->>>>>>> b654070e99a788f52c863cc65df974b2af4b7020
+For more information, read the [API authorization](/api-auth) documentation.
